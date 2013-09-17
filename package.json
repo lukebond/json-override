@@ -14,5 +14,9 @@
     },
     "scripts": {
         "test": "mocha"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lukebond/json-override"
     }
 }
