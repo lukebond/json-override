@@ -1,22 +1,22 @@
 {
-    "name": "json-override",
-    "version": "0.1.0",
-    "author": "Luke Bond <luke.n.bond@gmail.com>",
-    "description": "Override properties of one JS object with those of another.",
-    "main": "json-override",
-    "keywords": [
-        "json",
-        "override"
-    ],
-    "license": "MIT",
-    "engines": {
-        "node": ">=0.6"
-    },
-    "scripts": {
-        "test": "mocha"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/lukebond/json-override"
-    }
+  "name": "json-override",
+  "version": "0.1.1",
+  "author": "Luke Bond <luke.n.bond@gmail.com>",
+  "description": "Override properties of one JS object with those of another.",
+  "main": "json-override",
+  "keywords": [
+    "json",
+    "override"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.6"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukebond/json-override"
+  }
 }
