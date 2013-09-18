@@ -1,8 +1,8 @@
 # json-override
 
-Override properties of one JS object with those of another. Think basic inheritence for JavaScript objects.
+Override properties of one JS object with those of another. Think basic inheritence for JavaScript object properties (not methods!).
 
-All proerties of the override object will be copied into the base object. Other elements in the base object will remain unchanged. It will do a deep copy on objects within the object. It can either modify the base object or create and return a new object.
+All properties of the override object will be copied into the base object. Other elements in the base object will remain unchanged. It will do a deep copy on objects within the object. It can either modify the base object or create and return a new object.
 
 ## Usage
 
@@ -41,11 +41,73 @@ function someFunc(options) {
         verbose: false,
         dir: '.'
     };
-    var opts = override(default, options, true);
+    var opts = override(defaults, options, true);
     // 'opts' is now equal to 'defaults' plus whatever was passed into the function
     ...
 }
 ```
+
+This usage is similar to `_.defaults()`, but kind-of the other way around. It will recurse into sub-objects whereas `_.defaults()` won't.
+
+The use-case that gave rise to this module was for delivering a config file to a child process. The child process had a default config file, and it would be sent another config file with only the properties to be overridden. The config file is hierarchical so `_.extend()` or `_.defaults()` aren't enough to do the job. For example:
+
+``` js
+// default config
+{
+  "http": {
+    "port": 8080,
+    "host": "localhost"
+  },
+  "credentials": {
+    "sqs": {
+      "key": "***************",
+      "secret": "*****************",
+      "region": "eu-west-1"
+    },
+    "s3": {
+      "bucket": "stuff"
+    }
+  },
+  "log": {
+    "level": "silly",
+    "output": "file"
+  }
+}
+
+// override
+{
+  "http": {
+    "host": "10.x.y.z"
+  },
+  "log": {
+    "level": "info"
+  }
+}
+
+// result:
+{
+  "http": {
+    "port": 8080,
+    "host": "10.x.y.z"
+  },
+  "credentials": {
+    "sqs": {
+      "key": "***************",
+      "secret": "*****************",
+      "region": "eu-west-1"
+    },
+    "s3": {
+      "bucket": "stuff"
+    }
+  },
+  "log": {
+    "level": "info",
+    "output": "file"
+  }
+}
+```
+
+Although a deep-copy is done, don't mistake this for a full-blown JavaScript object deep copy! That is a complex problem (e.g.: https://github.com/jashkenas/underscore/issues/162). The module is intended for something like the above use-case.
 
 Take a look at the tests for further examples.
 
