@@ -4,19 +4,21 @@ function isObjectAndNotArray(object) {
 
 // 'createNew' defaults to false
 function overwriteKeys(baseObject, overrideObject, createNew) {
-    if (createNew) {
-        baseObject = JSON.parse(JSON.stringify(baseObject));
+  if (!baseObject) {
+    baseObject = {};
+  }
+  if (createNew) {
+    baseObject = JSON.parse(JSON.stringify(baseObject));
+  }
+  Object.keys(overrideObject).forEach(function(key) {
+    if (isObjectAndNotArray(baseObject[key]) && isObjectAndNotArray(overrideObject[key])) {
+      overwriteKeys(baseObject[key], overrideObject[key]);
     }
-    Object.keys(overrideObject).forEach(function(key) {
-        if (isObjectAndNotArray(baseObject[key]) && isObjectAndNotArray(overrideObject[key])) {
-            overwriteKeys(baseObject[key], overrideObject[key]);
-        }
-        else {
-            baseObject[key] = overrideObject[key];
-        }
-    });
-
-    return baseObject;
+    else {
+      baseObject[key] = overrideObject[key];
+    }
+  });
+  return baseObject;
 }
 
 module.exports = overwriteKeys;

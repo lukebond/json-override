@@ -77,5 +77,15 @@ describe('json-override', function() {
             assert.equal(baseObject.a, -1);
             assert.equal(baseObject.b, -1);
         });
+        it('should handle baseObject being null', function() {
+            var baseObject = null;
+            var overrideObject = {
+                a: -1,
+                b: -1
+            };
+            var newBaseObject = override(baseObject, overrideObject);
+            assert.equal(newBaseObject.a, -1);
+            assert.equal(newBaseObject.b, -1);
+        });
     });
 });

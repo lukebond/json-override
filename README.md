@@ -12,9 +12,11 @@ var override = require('json-override');
 override(baseObject, overrideObject, createNew)
 ```
 
-`baseObject` is a Javascript object whose properties are to be (potentially) overriden.
-`overrideObject` is the object whose properties will override those of `baseObject`.
+`baseObject` is a Javascript object whose properties are to be (potentially) overriden.  
+`overrideObject` is the object whose properties will override those of `baseObject`.  
 `createNew` (boolean, optional) indicates whether to create a new object or modify `baseObject`.
+
+If `baseObject` is `null` then it will be initialised to `{}` and `createNew` is implied.
 
 ## Example
 
