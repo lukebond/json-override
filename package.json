@@ -1,6 +1,6 @@
 {
   "name": "json-override",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "Luke Bond <luke.n.bond@gmail.com>",
   "description": "Override properties of one JS object with those of another.",
   "main": "json-override",
